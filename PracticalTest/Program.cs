@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 
 namespace PracticalTest
 {
@@ -25,7 +26,7 @@ namespace PracticalTest
                             DisplayProduct();
                             break;
                         case 3:
-                            DeleteProductToID();
+                            DeleteProductByID();
                             break;
                         case 4:
                             Console.WriteLine("Exit Program!!!");
@@ -67,13 +68,14 @@ namespace PracticalTest
 
         }
 
-        static void DeleteProductToID()
+        static void DeleteProductByID()
         {
-            Console.WriteLine("Enter product id you want delete: ");
-            int productID = int.Parse(Console.ReadLine());
-
-            
-
+            {
+                Console.WriteLine("Enter the ID you want to delete: ");
+                int idDelete = int.Parse(Console.ReadLine());
+                productLists.RemoveAll(p => p.productID == idDelete);
+                Console.WriteLine("Delete Success");
+            }
         }
 
         static void ShowMenu()
@@ -103,6 +105,11 @@ namespace PracticalTest
             this.productID = productID;
             this.productName = productName;
             this.Price = Price;
+        }
+
+        public int GetProductId()
+        {
+            return productID;
         }
 
         public override string ToString()
